@@ -83,11 +83,36 @@ body {
     padding: 2rem 0 5rem;
 }
 
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+    gap: clamp(2rem, 5vw, 5rem);
+}
+
 .hero-copy,
 .page-content {
     position: relative;
     z-index: 1;
     width: min(100%, 800px);
+}
+
+.hero-copy {
+    width: 100%;
+}
+
+.hero-art {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    background: transparent;
+}
+
+.hero-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: transparent;
+    filter: drop-shadow(0 24px 28px rgb(0 0 0 / 35%));
 }
 
 .hero-wordmark,
@@ -185,6 +210,16 @@ body {
         min-height: 0;
         padding: 3rem 0;
     }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .hero-art {
+        width: min(100%, 420px);
+    }
+
 }
 
 @media (max-width: 480px) {
