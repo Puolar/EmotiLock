@@ -1,17 +1,19 @@
 
-import face.env
+import os
 import cv2
 import time
+
+os.environ.setdefault("TF_ENABLE_ONEDNN_OPTS", "0")
+
 from deepface import DeepFace
 
 
 def capture_video():
-    face.env.TF_ENABLE_ONEDNN_OPTS = 0
     cascade_path = cv2.data.haarcascades +  'haarcascade_frontalface_default.xml'
 
     face_cascade = cv2.CascadeClassifier(cascade_path)
     if face_cascade.empty():
-        raise IOError(f"Cannot load face cascade: {cascade_path}")
+        raise IOError(f"Cannot load face cascade: {cascade_path}") # If not run then raise error
 
 
     # faceCascade = cv2.CascadeClassifier(cv2.data.haarcascades + cascPath)
