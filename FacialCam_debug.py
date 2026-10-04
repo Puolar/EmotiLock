@@ -1,12 +1,12 @@
 
-import face.env
+
 import cv2
 import time
 from deepface import DeepFace
 
 
-def capture_video():
-    face.env.TF_ENABLE_ONEDNN_OPTS = 0
+def capture_video(sec=.01):
+    #face.env.TF_ENABLE_ONEDNN_OPTS = 0
     cascade_path = cv2.data.haarcascades +  'haarcascade_frontalface_default.xml'
 
     face_cascade = cv2.CascadeClassifier(cascade_path)
@@ -23,7 +23,7 @@ def capture_video():
 
     try:
         while video.isOpened():
-            time.sleep(1) 
+            time.sleep(sec) 
             success, frame = video.read()
             if not success:
                 print("Could not read a frame from the webcam")
@@ -52,7 +52,7 @@ def capture_video():
                         (224, 77, 176),
                         2,
                     )
-                    return (emotion)
+                    print(emotion)
                 except Exception as exc:
                     print(f"Emotion analysis failed: {exc}")
 
@@ -62,3 +62,5 @@ def capture_video():
     finally:
         video.release()
         cv2.destroyAllWindows()
+
+capture_video()
