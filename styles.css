@@ -10,7 +10,7 @@
     color-scheme: dark;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     color: #f4f0e7;
-    background: #26252a;
+    background: #3a2b1e;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -22,21 +22,30 @@
     --folder-dark: #b8964f;
     --ink: #2a2118;
     --stamp: #c0392b;
+
+    /* planning board colors */
+    --cork: #3a2b1e;
+    --paper-text: #4a3b2a;
+    --mark: #9b2d20; /* typewriter-red labels on paper */
+    --paper-bg: linear-gradient(180deg, #f3e9cd, #e6d8b2);
+    --paper-border: 1px solid rgb(0 0 0 / 14%);
+    --paper-shadow: 0 1px 1px rgb(0 0 0 / 35%), 0 12px 22px rgb(0 0 0 / 45%);
 }
 
 * {
     box-sizing: border-box;
 }
 
+/* corkboard: noise texture + dark vignette */
 body {
     min-width: 320px;
     min-height: 100vh;
     margin: 0;
     padding: 0 clamp(1.25rem, 6vw, 6rem);
     background:
-        radial-gradient(ellipse at 15% 15%, #070707 0, transparent 40%),
-        radial-gradient(ellipse at 85% 85%, #836642 0, transparent 38%),
-        #26252a;
+        radial-gradient(ellipse at 50% 30%, transparent 35%, rgb(0 0 0 / 55%) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .62 0 0 0 0 .42 0 0 0 0 .25 1.6 0 0 0 -.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E"),
+        var(--cork);
 }
 
 .site-header {
@@ -192,40 +201,6 @@ body {
     isolation: isolate;
 }
 
-.page-main::before,
-.page-main::after {
-    position: absolute;
-    z-index: -1;
-    content: "";
-    pointer-events: none;
-}
-
-.page-main::before {
-    top: 12%;
-    right: -5rem;
-    width: clamp(220px, 34vw, 440px);
-    aspect-ratio: 1;
-    border: 1px solid rgb(230 184 92 / 22%);
-    border-radius: 50%;
-    box-shadow:
-        inset 0 0 0 18px rgb(230 184 92 / 3%),
-        inset 0 0 0 58px rgb(230 184 92 / 3%),
-        0 0 100px rgb(230 184 92 / 7%);
-}
-
-.page-main::after {
-    top: 22%;
-    right: clamp(2rem, 12vw, 10rem);
-    width: 12px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: #e6b85c;
-    box-shadow:
-        0 0 24px 8px rgb(230 184 92 / 24%),
-        -145px 140px 0 -4px rgb(230 184 92 / 70%),
-        -145px 140px 24px 2px rgb(230 184 92 / 20%);
-}
-
 .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
@@ -299,31 +274,20 @@ body {
     z-index: 1;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 1.4rem;
     margin-top: clamp(2rem, 5vh, 3.5rem);
 }
 
+/* ----- paper notes ----- */
 .feature-card {
     position: relative;
     min-height: 270px;
     padding: clamp(1.25rem, 2.5vw, 2rem);
     overflow: hidden;
-    border: 1px solid rgb(230 184 92 / 24%);
-    border-radius: 18px;
-    background: linear-gradient(145deg, rgb(255 255 255 / 6%), rgb(255 255 255 / 1%));
-    box-shadow: 0 18px 44px rgb(0 0 0 / 12%);
-}
-
-.feature-card::after {
-    position: absolute;
-    right: -42px;
-    bottom: -52px;
-    width: 140px;
-    aspect-ratio: 1;
-    border: 1px solid rgb(230 184 92 / 16%);
-    border-radius: 50%;
-    content: "";
-    pointer-events: none;
+    border: var(--paper-border);
+    border-radius: 3px;
+    background: var(--paper-bg);
+    box-shadow: var(--paper-shadow);
 }
 
 .feature-icon {
@@ -332,15 +296,15 @@ body {
     display: grid;
     place-items: center;
     margin-bottom: 1.5rem;
-    border: 1px solid rgb(230 184 92 / 35%);
-    border-radius: 14px;
-    background: rgb(230 184 92 / 8%);
+    border: 1px solid rgb(42 33 24 / 35%);
+    border-radius: 6px;
+    background: rgb(155 45 32 / 8%);
 }
 
 .feature-icon svg {
     width: 28px;
     height: 28px;
-    stroke: #e6b85c;
+    stroke: var(--mark);
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1.7;
@@ -348,8 +312,9 @@ body {
 
 .feature-index,
 .comparison-label {
-    color: #e6b85c;
-    font-size: 0.7rem;
+    color: var(--mark);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.13em;
 }
@@ -358,7 +323,7 @@ body {
     position: relative;
     z-index: 1;
     margin: 0.65rem 0 0.6rem;
-    color: #f4f0e7;
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
     font-size: clamp(1.05rem, 1.5vw, 1.3rem);
     line-height: 1.4;
@@ -369,19 +334,21 @@ body {
     position: relative;
     z-index: 1;
     margin: 0;
-    color: #d0c7b8;
+    color: var(--paper-text);
     font-size: 0.95rem;
     line-height: 1.7;
 }
 
+/* ----- manila folder holding the comparison ----- */
 .comparison-section {
     position: relative;
     z-index: 1;
     margin: clamp(3rem, 7vh, 5rem) 0 1rem;
     padding: clamp(1.5rem, 4vw, 3rem);
-    border: 1px solid rgb(230 184 92 / 22%);
-    border-radius: 22px;
-    background: linear-gradient(135deg, rgb(230 184 92 / 7%), rgb(255 255 255 / 2%));
+    border: 1px solid var(--folder-dark);
+    border-radius: 4px 18px 4px 4px;
+    background: linear-gradient(180deg, #e3c88b, #d3b071);
+    box-shadow: var(--paper-shadow);
 }
 
 .comparison-heading {
@@ -390,7 +357,7 @@ body {
 
 .comparison-heading h2 {
     margin: 0.5rem 0 0;
-    color: #f4f0e7;
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.2rem);
     letter-spacing: -0.04em;
@@ -405,19 +372,20 @@ body {
 
 .comparison-card {
     padding: 1.35rem;
-    border: 1px solid rgb(255 255 255 / 9%);
-    border-radius: 16px;
-    background: rgb(9 9 10 / 28%);
+    border: var(--paper-border);
+    border-radius: 3px;
+    background: linear-gradient(180deg, #f6eed6, #ede1bf);
+    box-shadow: 0 2px 6px rgb(0 0 0 / 25%);
 }
 
 .comparison-card-featured {
-    border-color: rgb(230 184 92 / 40%);
-    background: linear-gradient(145deg, rgb(230 184 92 / 10%), rgb(9 9 10 / 24%));
+    border: 2px solid var(--mark);
+    background: linear-gradient(180deg, #f8eccb, #efdcae);
 }
 
 .comparison-card h3 {
     margin: 0.7rem 0 0.5rem;
-    color: #f4f0e7;
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
     font-size: 1.15rem;
     line-height: 1.45;
@@ -425,7 +393,7 @@ body {
 
 .comparison-divider {
     align-self: center;
-    color: #e6b85c;
+    color: var(--mark);
     font-family: "Spy Agency", sans-serif;
     font-size: 1.1rem;
     letter-spacing: 0.08em;
@@ -433,7 +401,7 @@ body {
 
 .comparison-note {
     margin: 1rem 0 0;
-    color: #bfb6a8;
+    color: #5a4a36;
     font-size: 0.82rem;
     line-height: 1.6;
 }
@@ -463,18 +431,18 @@ body {
     justify-content: center;
     padding: 2rem;
     overflow: hidden;
-    border: 1px solid rgb(230 184 92 / 32%);
-    border-radius: 24px;
-    background:
-        radial-gradient(circle at 80% 20%, rgb(230 184 92 / 15%), transparent 48%),
-        linear-gradient(145deg, rgb(255 255 255 / 5%), rgb(255 255 255 / 1%));
+    border: var(--paper-border);
+    border-radius: 3px;
+    background: var(--paper-bg);
+    box-shadow: var(--paper-shadow);
 }
 
 .about-statement-label {
     position: relative;
     z-index: 1;
-    color: #e6b85c;
-    font-size: 0.72rem;
+    color: var(--mark);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.74rem;
     font-weight: 700;
     letter-spacing: 0.16em;
 }
@@ -483,21 +451,21 @@ body {
     position: relative;
     z-index: 1;
     margin: 1rem 0 0;
-    color: #d0c7b8;
+    color: var(--paper-text);
     font-family: "Montserrat", sans-serif;
     font-size: clamp(1.2rem, 2.3vw, 1.7rem);
     line-height: 1.55;
 }
 
 .about-statement strong {
-    color: #f4f0e7;
+    color: var(--ink);
 }
 
 .about-statement-mark {
     position: absolute;
     right: 1rem;
     bottom: -5.5rem;
-    color: rgb(230 184 92 / 9%);
+    color: rgb(155 45 32 / 8%);
     font-family: "Spy Agency", sans-serif;
     font-size: 18rem;
     line-height: 1;
@@ -509,7 +477,7 @@ body {
     top: -4rem;
     width: 15rem;
     aspect-ratio: 1;
-    border: 1px solid rgb(230 184 92 / 24%);
+    border: 1px solid rgb(155 45 32 / 20%);
     border-radius: 50%;
 }
 
@@ -517,7 +485,7 @@ body {
     right: 1rem;
     top: 0;
     width: 7rem;
-    border-color: rgb(230 184 92 / 17%);
+    border-color: rgb(155 45 32 / 14%);
 }
 
 .about-principles {
@@ -542,7 +510,7 @@ body {
 .principle-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 1.4rem;
 }
 
 .principle-card {
@@ -550,13 +518,14 @@ body {
     min-height: 190px;
     padding: 1.4rem;
     overflow: hidden;
-    border-top: 1px solid rgb(230 184 92 / 45%);
-    border-radius: 0 0 16px 16px;
-    background: linear-gradient(180deg, rgb(230 184 92 / 7%), rgb(255 255 255 / 1%));
+    border: var(--paper-border);
+    border-radius: 3px;
+    background: var(--paper-bg);
+    box-shadow: var(--paper-shadow);
 }
 
 .principle-number {
-    color: #e6b85c;
+    color: var(--mark);
     font-family: "Spy Agency", sans-serif;
     font-size: 0.95rem;
     letter-spacing: 0.1em;
@@ -564,14 +533,14 @@ body {
 
 .principle-card h3 {
     margin: 1rem 0 0.5rem;
-    color: #f4f0e7;
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
     font-size: 1.05rem;
 }
 
 .principle-card p {
     margin: 0;
-    color: #d0c7b8;
+    color: var(--paper-text);
     font-size: 0.92rem;
     line-height: 1.7;
 }
@@ -603,19 +572,22 @@ body {
 }
 
 .process-step {
+    position: relative;
     min-height: 220px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 1.35rem;
-    border: 1px solid rgb(230 184 92 / 22%);
-    border-radius: 18px;
-    background: linear-gradient(145deg, rgb(255 255 255 / 5%), rgb(255 255 255 / 1%));
+    border: var(--paper-border);
+    border-radius: 3px;
+    background: var(--paper-bg);
+    box-shadow: var(--paper-shadow);
 }
 
 .process-index {
-    color: #e6b85c;
-    font-size: 0.68rem;
+    color: var(--mark);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.12em;
 }
@@ -626,15 +598,15 @@ body {
     height: 42px;
     display: block;
     margin: 1.3rem 0 0.8rem;
-    border: 1px solid rgb(230 184 92 / 55%);
-    border-radius: 13px;
-    background: rgb(230 184 92 / 8%);
+    border: 1px solid rgb(42 33 24 / 45%);
+    border-radius: 8px;
+    background: rgb(155 45 32 / 7%);
 }
 
 .process-camera::before {
     position: absolute;
     inset: 11px 8px;
-    border: 1px solid #e6b85c;
+    border: 1px solid var(--mark);
     border-radius: 4px;
     content: "";
 }
@@ -645,7 +617,7 @@ body {
     left: 16px;
     width: 9px;
     aspect-ratio: 1;
-    border: 1px solid #e6b85c;
+    border: 1px solid var(--mark);
     border-radius: 50%;
     content: "";
 }
@@ -656,7 +628,7 @@ body {
     left: 9px;
     width: 22px;
     height: 7px;
-    border: 1px solid #e6b85c;
+    border: 1px solid var(--mark);
     border-radius: 50%;
     content: "";
 }
@@ -675,22 +647,22 @@ body {
     left: 14px;
     width: 12px;
     height: 18px;
-    border-right: 2px solid #e6b85c;
-    border-bottom: 2px solid #e6b85c;
+    border-right: 2px solid var(--mark);
+    border-bottom: 2px solid var(--mark);
     content: "";
     transform: rotate(42deg);
 }
 
 .process-step h2 {
     margin: 0 0 0.45rem;
-    color: #f4f0e7;
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
     font-size: 1.05rem;
 }
 
 .process-step p {
     margin: 0;
-    color: #d0c7b8;
+    color: var(--paper-text);
     font-size: 0.88rem;
     line-height: 1.6;
 }
@@ -722,6 +694,7 @@ body {
 
 .section-kicker {
     color: #e6b85c;
+    font-family: "Courier New", Courier, monospace;
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.14em;
@@ -739,7 +712,7 @@ body {
 .expression-sequence {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.85rem;
+    gap: 1.2rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -755,28 +728,18 @@ body {
     gap: 1.25rem;
     padding: 1rem 1.1rem;
     overflow: hidden;
-    border: 1px solid rgb(230 184 92 / 22%);
-    border-radius: 16px;
-    background: linear-gradient(145deg, rgb(255 255 255 / 5%), rgb(255 255 255 / 1%));
-    color: #f4f0e7;
+    border: var(--paper-border);
+    border-radius: 3px;
+    background: var(--paper-bg);
+    box-shadow: var(--paper-shadow);
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
     font-size: 1.05rem;
     font-weight: 600;
 }
 
-.expression-sequence li::after {
-    position: absolute;
-    right: -22px;
-    bottom: -34px;
-    width: 84px;
-    aspect-ratio: 1;
-    border: 1px solid rgb(230 184 92 / 22%);
-    border-radius: 50%;
-    content: "";
-}
-
 .expression-number {
-    color: #e6b85c;
+    color: var(--mark);
     font-family: "Spy Agency", sans-serif;
     font-size: 0.9rem;
     letter-spacing: 0.08em;
@@ -784,7 +747,7 @@ body {
 
 .sequence-note {
     margin: 1rem 0 0;
-    color: #bfb6a8;
+    color: #cfc4b0;
     font-size: 0.9rem;
     line-height: 1.7;
 }
@@ -793,7 +756,7 @@ body {
 .page-description {
     max-width: 62ch;
     margin: 1.25rem 0 2rem;
-    color: #d0c7b8;
+    color: #e0d6c4;
     font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.8;
 }
@@ -873,7 +836,7 @@ body {
     z-index: 1;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 1.4rem;
     margin-top: clamp(2rem, 5vh, 3.5rem);
 }
 
@@ -886,27 +849,16 @@ body {
     align-items: flex-start;
     padding: 1.4rem;
     overflow: hidden;
-    border: 1px solid rgb(230 184 92 / 24%);
-    border-radius: 18px;
-    background: linear-gradient(145deg, rgb(255 255 255 / 6%), rgb(255 255 255 / 1%));
-    box-shadow: 0 18px 44px rgb(0 0 0 / 12%);
-}
-
-.contact-card::after {
-    position: absolute;
-    right: -45px;
-    top: 55px;
-    width: 140px;
-    aspect-ratio: 1;
-    border: 1px solid rgb(230 184 92 / 15%);
-    border-radius: 50%;
-    content: "";
-    pointer-events: none;
+    border: var(--paper-border);
+    border-radius: 3px;
+    background: var(--paper-bg);
+    box-shadow: var(--paper-shadow);
 }
 
 .contact-card-index {
-    color: #e6b85c;
-    font-size: 0.68rem;
+    color: var(--mark);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.13em;
 }
@@ -917,10 +869,10 @@ body {
     display: grid;
     place-items: center;
     margin-top: 1.2rem;
-    border: 1px solid rgb(230 184 92 / 45%);
+    border: 1px solid rgb(42 33 24 / 45%);
     border-radius: 50%;
-    background: rgb(230 184 92 / 9%);
-    color: #f4f0e7;
+    background: rgb(155 45 32 / 9%);
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
     font-size: 0.85rem;
     font-weight: 700;
@@ -930,7 +882,7 @@ body {
     position: relative;
     z-index: 1;
     margin: 0.9rem 0 0.35rem;
-    color: #f4f0e7;
+    color: var(--ink);
     font-family: "Montserrat", sans-serif;
     font-size: 1.1rem;
 }
@@ -938,7 +890,7 @@ body {
 .contact-email {
     position: relative;
     z-index: 1;
-    color: #d0c7b8;
+    color: var(--paper-text);
     font-size: 0.87rem;
     overflow-wrap: anywhere;
     text-decoration: none;
@@ -946,7 +898,7 @@ body {
 
 .contact-email:hover,
 .contact-email:focus-visible {
-    color: #f4f0e7;
+    color: var(--mark);
     text-decoration: underline;
     text-underline-offset: 0.2em;
 }
@@ -959,7 +911,7 @@ body {
     gap: 0.45rem;
     margin-top: auto;
     padding-top: 1rem;
-    color: #e6b85c;
+    color: var(--mark);
     font-size: 0.82rem;
     font-weight: 700;
     text-decoration: none;
@@ -967,12 +919,101 @@ body {
 
 .contact-social:hover,
 .contact-social:focus-visible {
-    color: #f4f0e7;
+    color: var(--ink);
 }
 
 .contact-social-empty {
-    color: #9e9587;
+    color: #8a7a62;
     font-weight: 400;
+}
+
+/* ---------- PLANNING BOARD: PINS + TILT ---------- */
+
+/* leave room at the top of each note for its pin */
+.feature-card,
+.principle-card,
+.contact-card,
+.process-step,
+.about-statement,
+.expression-sequence li {
+    padding-top: 2.1rem;
+}
+
+/* stringless pushpin on every note and on the folder */
+.feature-card::before,
+.principle-card::before,
+.contact-card::before,
+.process-step::before,
+.about-statement::before,
+.expression-sequence li::before,
+.comparison-section::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 50%;
+    z-index: 2;
+    width: 14px;
+    height: 14px;
+    margin-left: -7px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 35% 30%,
+        rgb(255 255 255 / 70%) 0 1.5px,
+        var(--pin, #c0392b) 3.5px 6px,
+        rgb(0 0 0 / 55%) 8px
+    );
+    box-shadow:
+        0 3px 4px rgb(0 0 0 / 55%),
+        inset -1px -1px 2px rgb(0 0 0 / 35%);
+    pointer-events: none;
+}
+
+/* mix in some gold pins */
+.feature-card:nth-child(3n + 2),
+.principle-card:nth-child(3n + 2),
+.contact-card:nth-child(3n + 2),
+.expression-sequence li:nth-child(3n + 2),
+.process-step:nth-child(4n + 3) {
+    --pin: #d9a640;
+}
+
+/* notes sit at slightly different angles, like they were pinned by hand */
+.feature-card,
+.principle-card,
+.contact-card,
+.process-step,
+.about-statement,
+.expression-sequence li {
+    transition: transform 200ms ease;
+}
+
+.feature-card:nth-child(odd),
+.principle-card:nth-child(odd),
+.contact-card:nth-child(odd),
+.process-step:nth-child(odd),
+.expression-sequence li:nth-child(odd) {
+    transform: rotate(-0.9deg);
+}
+
+.feature-card:nth-child(even),
+.principle-card:nth-child(even),
+.contact-card:nth-child(even),
+.process-step:nth-child(even),
+.expression-sequence li:nth-child(even) {
+    transform: rotate(0.7deg);
+}
+
+.about-statement {
+    transform: rotate(0.6deg);
+}
+
+.feature-card:hover,
+.principle-card:hover,
+.contact-card:hover,
+.process-step:hover,
+.about-statement:hover,
+.expression-sequence li:hover {
+    transform: rotate(0) translateY(-4px);
 }
 
 @media (max-width: 760px) {
@@ -1008,16 +1049,6 @@ body {
 
     .hero-art {
         width: min(100%, 420px);
-    }
-
-    .page-main::before {
-        top: 4%;
-        right: -8rem;
-    }
-
-    .page-main::after {
-        top: 12%;
-        right: 3rem;
     }
 
     .expression-sequence {
@@ -1094,7 +1125,7 @@ body {
 
     .expression-sequence li {
         min-height: 100px;
-        padding: 0.85rem;
+        padding: 1.8rem 0.85rem 0.85rem;
         font-size: 0.95rem;
     }
 }
