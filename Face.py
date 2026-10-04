@@ -1,4 +1,9 @@
 import FacialCam
+import os
+os.environ.setdefault("TF_ENABLE_ONEDNN_OPTS", "0")
+
+#.\Face.venv\Scripts\python.exe app.py
+#http://127.0.0.1:5000
 
 Emotion_code = {
     "angry": 0,
