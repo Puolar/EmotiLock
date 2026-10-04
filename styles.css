@@ -738,6 +738,24 @@ body {
     font-weight: 600;
 }
 
+.expression-face {
+    width: 116px;
+    height: auto;
+    max-height: 94px;
+    align-self: center;
+    object-fit: contain;
+}
+
+.expression-sequence li.expression-angry,
+.expression-sequence li.expression-disgusted,
+.expression-sequence li.expression-fearful,
+.expression-sequence li.expression-happy,
+.expression-sequence li.expression-neutral,
+.expression-sequence li.expression-sad,
+.expression-sequence li.expression-surprise {
+    min-height: 210px;
+}
+
 .expression-number {
     color: var(--mark);
     font-family: "Spy Agency", sans-serif;
