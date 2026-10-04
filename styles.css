@@ -36,6 +36,29 @@
     box-sizing: border-box;
 }
 
+/* ---------- WEB-APP POLISH: ANCHORS + SELECTION ---------- */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 1.5rem;
+    scrollbar-color: rgb(217 166 64 / 55%) transparent;
+}
+
+/* any element with an id can be an in-page anchor target */
+[id] {
+    scroll-margin-top: 1.5rem;
+}
+
+::selection {
+    background: #e6b85c;
+    color: #211b12;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid #e6b85c;
+    outline-offset: 3px;
+}
+
 /* corkboard: noise texture + dark vignette */
 body {
     min-width: 320px;
@@ -796,13 +819,20 @@ body {
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 160ms ease, transform 160ms ease;
+    transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
 }
 
 .get-started:hover,
 .primary-button:hover {
     transform: translateY(-2px);
     background: #f0c66f;
+    box-shadow: 0 8px 22px rgb(217 166 64 / 28%);
+}
+
+.get-started:active,
+.primary-button:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: none;
 }
 
 .get-started:focus-visible,
@@ -1002,7 +1032,7 @@ body {
 .process-step,
 .about-statement,
 .expression-sequence li {
-    transition: transform 200ms ease;
+    transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
 .feature-card:nth-child(odd),
@@ -1032,6 +1062,196 @@ body {
 .about-statement:hover,
 .expression-sequence li:hover {
     transform: rotate(0) translateY(-4px);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 35%), 0 18px 30px rgb(0 0 0 / 50%);
+}
+
+/* ---------- MOTION: LOAD-IN, SCROLL REVEAL, ANCHOR HIGHLIGHT ---------- */
+/* These use the individual `translate` / `scale` properties so they never
+   fight with the tilt and hover `transform` rules above. */
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        translate: 0 18px;
+    }
+}
+
+@keyframes drop-in {
+    from {
+        opacity: 0;
+        translate: 0 -12px;
+    }
+}
+
+@keyframes pop-in {
+    from {
+        opacity: 0;
+        translate: 0 24px;
+        scale: 0.96;
+    }
+}
+
+@keyframes draw-string {
+    from {
+        opacity: 0;
+        scale: 0 1;
+    }
+}
+
+@keyframes scroll-reveal {
+    from {
+        opacity: 0;
+        translate: 0 28px;
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+@keyframes target-flash {
+    0% {
+        outline-color: rgb(230 184 92 / 0%);
+    }
+
+    20% {
+        outline-color: rgb(230 184 92 / 85%);
+    }
+
+    100% {
+        outline-color: rgb(230 184 92 / 0%);
+    }
+}
+
+/* header: logo fades in, tabs drop onto the string one by one, string draws across */
+.brand img {
+    animation: fade-up 600ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.site-header nav a {
+    animation: drop-in 520ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.site-header nav a:nth-of-type(1) { animation-delay: 100ms; }
+.site-header nav a:nth-of-type(2) { animation-delay: 160ms; }
+.site-header nav a:nth-of-type(3) { animation-delay: 220ms; }
+.site-header nav a:nth-of-type(4) { animation-delay: 280ms; }
+.site-header nav a:nth-of-type(5) { animation-delay: 340ms; }
+.site-header nav a:nth-of-type(6) { animation-delay: 400ms; }
+
+.site-header nav::after {
+    transform-origin: left center;
+    animation: draw-string 700ms ease-out 300ms backwards;
+}
+
+/* hero + page intros: staggered fade up */
+.hero-copy > *,
+.page-content > *,
+.contact-intro > * {
+    animation: fade-up 650ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.hero-copy > :nth-child(1),
+.page-content > :nth-child(1),
+.contact-intro > :nth-child(1) { animation-delay: 120ms; }
+
+.hero-copy > :nth-child(2),
+.page-content > :nth-child(2),
+.contact-intro > :nth-child(2) { animation-delay: 200ms; }
+
+.hero-copy > :nth-child(3),
+.page-content > :nth-child(3),
+.contact-intro > :nth-child(3) { animation-delay: 280ms; }
+
+.hero-copy > :nth-child(4),
+.page-content > :nth-child(4),
+.contact-intro > :nth-child(4) { animation-delay: 360ms; }
+
+.hero-copy > :nth-child(n + 5),
+.page-content > :nth-child(n + 5),
+.contact-intro > :nth-child(n + 5) { animation-delay: 440ms; }
+
+.hero-art {
+    animation: pop-in 800ms cubic-bezier(0.2, 0.7, 0.2, 1) 250ms backwards;
+}
+
+/* notes, folders and section headings reveal as they scroll into view */
+@supports (animation-timeline: view()) {
+    .feature-card,
+    .principle-card,
+    .contact-card,
+    .process-step,
+    .about-statement,
+    .expression-sequence li,
+    .comparison-section,
+    .about-section-heading,
+    .expression-heading,
+    .sequence-note {
+        animation: scroll-reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 45%;
+    }
+}
+
+/* browsers without scroll-driven animations: simple staggered fade on load */
+@supports not (animation-timeline: view()) {
+    .feature-card,
+    .principle-card,
+    .contact-card,
+    .process-step,
+    .about-statement,
+    .expression-sequence li,
+    .comparison-section,
+    .about-section-heading,
+    .expression-heading,
+    .sequence-note {
+        animation: fade-up 650ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    }
+
+    :is(.unique-features, .principle-grid, .contact-people, .expression-sequence) > :nth-child(2) { animation-delay: 80ms; }
+    :is(.unique-features, .principle-grid, .contact-people, .expression-sequence) > :nth-child(3) { animation-delay: 160ms; }
+    :is(.unique-features, .principle-grid, .contact-people, .expression-sequence) > :nth-child(4) { animation-delay: 240ms; }
+    :is(.unique-features, .principle-grid, .contact-people, .expression-sequence) > :nth-child(n + 5) { animation-delay: 320ms; }
+}
+
+/* in-page anchors: the section you jump to briefly glows */
+[id]:target {
+    outline: 2px solid transparent;
+    outline-offset: 6px;
+    animation: target-flash 1.6s ease-out;
+}
+
+/* animated underline on text links */
+.about-next-link,
+.contact-social:not(.contact-social-empty) {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: color 160ms ease, background-size 220ms ease;
+}
+
+.about-next-link:hover,
+.about-next-link:focus-visible,
+.contact-social:not(.contact-social-empty):hover,
+.contact-social:not(.contact-social-empty):focus-visible {
+    background-size: 100% 1px;
+}
+
+/* focus rings on paper need a darker color to be visible */
+.contact-card a:focus-visible {
+    outline-color: var(--mark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 @media (max-width: 760px) {
