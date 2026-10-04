@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmotiLock - About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="images/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="images/logo_apple.png">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="logo_apple.png">
     <link rel="manifest" href="site.webmanifest">
 </head>
 <body>
@@ -24,11 +27,44 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
-    <main class="page-main">
-        <section class="page-content" aria-labelledby="page-title">
-            <p class="page-wordmark">EmotiLock</p>
-            <h1 class="page-title" id="page-title">About EmotiLock</h1>
-            <p class="page-description">We here at Emotilock are passionate about security, innovation, and privacy. We decided that even though modern face ID is sufficient, we wanted to make something that ensures complete and total security by adding an additional layer of authentication. We strived to create something that is both a revolution in authentication and a personal experience for the user.</p>
+    <main class="page-main about-main">
+        <div class="about-intro">
+            <section class="page-content" aria-labelledby="page-title">
+                <p class="page-wordmark">EmotiLock</p>
+                <h1 class="page-title" id="page-title">About EmotiLock</h1>
+                <p class="page-description">We are passionate about security, innovation, and privacy. EmotiLock explores a more personal approach to authentication by using a chosen sequence of facial expressions as an additional sign-in pattern.</p>
+            </section>
+            <aside class="about-statement" aria-label="Our project focus">
+                <span class="about-orbit about-orbit-one"></span>
+                <span class="about-orbit about-orbit-two"></span>
+                <span class="about-statement-label">OUR FOCUS</span>
+                <p>Technology that feels<br><strong>personal by design.</strong></p>
+                <span class="about-statement-mark" aria-hidden="true">E</span>
+            </aside>
+        </div>
+        <section class="about-principles" aria-labelledby="principles-title">
+            <div class="about-section-heading">
+                <span class="section-kicker">What guides us</span>
+                <h2 id="principles-title">Built around people</h2>
+            </div>
+            <div class="principle-grid">
+                <article class="principle-card">
+                    <span class="principle-number">01</span>
+                    <h3>Security-minded</h3>
+                    <p>We explore an additional layer of authentication beyond a single sign-in cue.</p>
+                </article>
+                <article class="principle-card">
+                    <span class="principle-number">02</span>
+                    <h3>Curious by nature</h3>
+                    <p>We bring computer vision and expression analysis together in a new project concept.</p>
+                </article>
+                <article class="principle-card">
+                    <span class="principle-number">03</span>
+                    <h3>Personal experience</h3>
+                    <p>A chosen expression sequence makes the idea feel individual and memorable.</p>
+                </article>
+            </div>
+            <a class="about-next-link" href="unique.html">Explore what makes us unique <span aria-hidden="true">→</span></a>
         </section>
     </main>
 </body>

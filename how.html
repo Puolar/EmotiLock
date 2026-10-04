@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmotiLock - How We Do It</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="images/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="images/logo_apple.png">
-    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="logo_apple.png">
+    <link rel="manifest" href="site.webmanifest">
 </head>
 <body>
     <header class="site-header">
@@ -24,13 +27,49 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
-    <main class="page-main">
+    <main class="page-main how-main">
         <section class="page-content" aria-labelledby="page-title">
             <p class="page-wordmark">EmotiLock</p>
             <h1 class="page-title" id="page-title">How We Do It</h1>
-            <p class="page-description">We used python and leveraged OpenCV and DeepFace
-                to locate and detect faces and their emotions.
-            </p>
+            <p class="page-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </section>
+        <section class="process-section" aria-label="EmotiLock sign-in process">
+            <article class="process-step">
+                <span class="process-index">01 / INPUT</span>
+                <span class="process-symbol process-camera" aria-hidden="true"></span>
+                <h2>Find a face</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </article>
+            <span class="process-connector" aria-hidden="true">→</span>
+            <article class="process-step">
+                <span class="process-index">02 / ANALYSIS</span>
+                <span class="process-symbol process-scan" aria-hidden="true"></span>
+                <h2>Read expression</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </article>
+            <span class="process-connector" aria-hidden="true">→</span>
+            <article class="process-step">
+                <span class="process-index">03 / PATTERN</span>
+                <span class="process-symbol process-check" aria-hidden="true"></span>
+                <h2>Follow the sequence</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </article>
+        </section>
+        <section class="expression-section" aria-labelledby="expression-title">
+            <div class="expression-heading">
+                <span class="section-kicker">A pattern only you know</span>
+                <h2 id="expression-title">The expression sequence</h2>
+            </div>
+            <ol class="expression-sequence">
+                <li><span class="expression-number">01</span><span>Angry</span></li>
+                <li><span class="expression-number">02</span><span>Disgusted</span></li>
+                <li><span class="expression-number">03</span><span>Fearful</span></li>
+                <li><span class="expression-number">04</span><span>Happy</span></li>
+                <li><span class="expression-number">05</span><span>Neutral</span></li>
+                <li><span class="expression-number">06</span><span>Sad</span></li>
+                <li><span class="expression-number">07</span><span>Surprise</span></li>
+            </ol>
+            <p class="sequence-note">Example categories only. This visual demonstrates a possible sequence and does not represent a security guarantee.</p>
         </section>
     </main>
 </body>

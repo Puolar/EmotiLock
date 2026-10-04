@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmotiLock - What We Do</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="images/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="images/logo_apple.png">
-    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="logo_apple.png">
+    <link rel="manifest" href="site.webmanifest">
 </head>
 <body>
     <header class="site-header">
@@ -24,11 +27,71 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
-    <main class="page-main">
+    <main class="page-main unique-main">
         <section class="page-content" aria-labelledby="page-title">
             <p class="page-wordmark">EmotiLock</p>
             <h1 class="page-title" id="page-title">What Makes Us Unique?</h1>
-            <p class="page-description">Regular passkey and biometric authentication methods are basic and don't innovate. Some people aren't satisfied with a single method of authentication, and we wanted to create something to solve that. Emotilock is the first face ID recognition system that uses a sequence of your emotions to unlock your device. This gives it an extra layer of security that ensures the maximum security and privacy for the user.</p>
+            <p class="page-description">EmotiLock explores a different kind of sign-in: using a chosen sequence of facial expressions as an authentication pattern.</p>
+        </section>
+        <section class="unique-features" aria-label="EmotiLock features">
+            <article class="feature-card">
+                <span class="feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <circle cx="8" cy="24" r="4" />
+                        <circle cx="24" cy="12" r="4" />
+                        <circle cx="40" cy="24" r="4" />
+                        <circle cx="24" cy="36" r="4" />
+                        <path d="m11.5 21.5 9-7m7 0 9 7m0 5-9 7m-7 0-9-7" />
+                    </svg>
+                </span>
+                <span class="feature-index">01 / PATTERN</span>
+                <h2>A sequence, not a single expression</h2>
+                <p>Build a memorable unlock pattern by choosing an order from seven expression categories.</p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M24 5c-9 0-16 7-16 16v5c0 10 7 17 16 17s16-7 16-17v-5c0-9-7-16-16-16Z" />
+                        <path d="M17 21h.01M31 21h.01M18 31c2 2 4 3 6 3s4-1 6-3" />
+                        <path d="M5 12h5m28 0h5M4 19h4m32 0h4" />
+                    </svg>
+                </span>
+                <span class="feature-index">02 / RECOGNITION</span>
+                <h2>Expressions are part of the pattern</h2>
+                <p>The project uses face detection and expression analysis to interpret the steps in a chosen sequence.</p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-icon" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M24 5 40 12v11c0 10-6 16-16 20C14 39 8 33 8 23V12l16-7Z" />
+                        <path d="m17 24 5 5 10-11" />
+                    </svg>
+                </span>
+                <span class="feature-index">03 / PERSONAL</span>
+                <h2>Make it your own</h2>
+                <p>A personal sequence gives this authentication concept a pattern that is more memorable to you.</p>
+            </article>
+        </section>
+        <section class="comparison-section" aria-labelledby="comparison-title">
+            <div class="comparison-heading">
+                <span class="section-kicker">A different approach</span>
+                <h2 id="comparison-title">One goal, different patterns</h2>
+            </div>
+            <div class="comparison-grid">
+                <article class="comparison-card">
+                    <span class="comparison-label">COMMON SIGN-IN METHODS</span>
+                    <h3>One credential or biometric</h3>
+                    <p>Depending on the product, sign-in may use a password, passkey, fingerprint, or face scan.</p>
+                </article>
+                <span class="comparison-divider" aria-hidden="true">VS</span>
+                <article class="comparison-card comparison-card-featured">
+                    <span class="comparison-label">THE EMOTILOCK CONCEPT</span>
+                    <h3>A chosen expression sequence</h3>
+                    <p>Use an ordered pattern drawn from categories such as happy, neutral, surprised and more.</p>
+                </article>
+            </div>
+            <p class="comparison-note">EmotiLock is a project concept; this comparison describes the approach, not a guarantee of security performance.</p>
+            <a class="get-started unique-cta" href="how.html">See how it works <span aria-hidden="true">→</span></a>
         </section>
     </main>
 </body>
