@@ -4,34 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmotiLock - Home</title>
-    <link href="styles.css" rel="stylesheet">
-    <link rel="icon" href="images/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="images/logo_apple.png">
-    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="logo_apple.png">
+    <link rel="manifest" href="site.webmanifest">
 </head>
-<header>
-    <h1>EmotiLock</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="unique.html">What We Do</a>
-        <a href="how.html">How We Do It</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <img src="images/emotilock_dark.png" alt="EmotiLock Logo" width="241.5" height="150">
-</header>
 <body>
-    <div>
-        <h2>Your Emotions. Your Key.</h2>
-        <h3>Welcome to Emotilock, the next generation of facial ID recognition.
-            If regular biometrics aren't enough, we've made something that is.
-            Emotilock uses your emotions to unlock your devices, making it the
-            most secure and personal way to access your information.
-        </h3>
-    </div>
-    <button>Start Securing</button>
-
+    <header class="site-header">
+        <a class="brand" href="index.html" aria-label="EmotiLock home">
+            <img src="emotilock_dark.png" alt="EmotiLock logo" width="242" height="136">
+        </a>
+        <nav aria-label="Main navigation">
+            <a href="index.html" aria-current="page">Home</a>
+            <a href="about.html">About</a>
+            <a href="unique.html">What We Do</a>
+            <a href="how.html">How We Do It</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main class="hero">
+        <section class="hero-copy" aria-labelledby="hero-title">
+            <p class="hero-wordmark">EmotiLock</p>
+            <h1 id="hero-title">Your Emotions.<br>Your Key.</h1>
+            <p class="description">Welcome to Emotilock, the next generation of facial ID recognition. If regular biometrics aren't enough, we've made something that is. Emotilock uses your emotions to unlock your devices, making it the most secure and personal way to access your information.</p>
+            <button class="primary-button" type="button">Start Securing</button>
+        </section>
+    </main>
 </body>
 </html>

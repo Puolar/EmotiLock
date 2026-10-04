@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmotiLock - How We Do It</title>
-    <link href="styles.css" rel="stylesheet">
-    <link rel="icon" href="images/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="images/logo_apple.png">
-    <link rel="manifest" href="images/site.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="logo_apple.png">
+    <link rel="manifest" href="site.webmanifest">
 </head>
-<header>
-    <h1>EmotiLock</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="unique.html">What We Do</a>
-        <a href="how.html">How We Do It</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <img src="images/emotilock_dark.png" alt="EmotiLock Logo" width="241.5" height="150">
-</header>
 <body>
-    <h2>How We Do It</h2>
-    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+    <header class="site-header">
+        <a class="brand" href="index.html" aria-label="EmotiLock home">
+            <img src="emotilock_dark.png" alt="EmotiLock logo" width="242" height="136">
+        </a>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="unique.html">What We Do</a>
+            <a href="how.html" aria-current="page">How We Do It</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main class="page-main">
+        <section class="page-content" aria-labelledby="page-title">
+            <p class="page-wordmark">EmotiLock</p>
+            <h1 class="page-title" id="page-title">How We Do It</h1>
+            <p class="page-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </section>
+    </main>
 </body>
 </html>
