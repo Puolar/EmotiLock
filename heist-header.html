@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heist Header</title>
+<style>
+  :root {
+    --bg: #1b1d1f;
+    --folder: #d9b878;
+    --folder-dark: #b8964f;
+    --ink: #2a2118;
+    --stamp: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: #eee;
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  /* ---------- HEADER ---------- */
+  .site-header {
+    padding: 28px 24px 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 2px, transparent 2px 4px),
+      #111315;
+    border-bottom: 6px solid var(--folder-dark);
+  }
+  .logo {
+    font-size: 14px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: #8a8f94;
+    margin: 0 0 18px;
+  }
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    align-items: flex-end;
+  }
+
+  /* ---------- FOLDER TAB LINKS ---------- */
+  .nav a {
+    position: relative;
+    display: block;
+    padding: 10px 22px 8px 26px;
+    color: var(--ink);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .12em;
+    background: linear-gradient(180deg, #e8cb8f, var(--folder));
+    border: 1px solid var(--folder-dark);
+    border-bottom: none;
+    border-radius: 8px 14px 0 0;
+    box-shadow: 0 -2px 6px rgba(0,0,0,.4);
+    transform-origin: bottom left;
+    transition: transform .15s ease, padding .15s ease;
+  }
+  /* slight staggered "stacked on a desk" tilt */
+  .nav li:nth-child(odd)  a { transform: rotate(-.8deg); }
+  .nav li:nth-child(even) a { transform: rotate(.6deg); }
+
+  .nav a:hover,
+  .nav a:focus-visible,
+  .nav a[aria-current="page"] {
+    transform: translateY(-6px) rotate(0);
+    padding-top: 16px;
+    outline: none;
+  }
+
+  /* paperclip */
+  .nav a::before {
+    content: "";
+    position: absolute;
+    left: 7px;
+    top: -6px;
+    width: 8px;
+    height: 20px;
+    border: 2px solid #9aa0a6;
+    border-radius: 6px;
+  }
+
+  /* CLASSIFIED stamp, appears on hover */
+  .nav a::after {
+    content: "CLASSIFIED";
+    position: absolute;
+    right: -6px;
+    top: 4px;
+    padding: 1px 5px;
+    font-size: 9px;
+    letter-spacing: .15em;
+    color: var(--stamp);
+    border: 2px solid var(--stamp);
+    border-radius: 3px;
+    transform: rotate(10deg) scale(1.6);
+    opacity: 0;
+    transition: opacity .12s ease, transform .12s ease;
+    pointer-events: none;
+  }
+  .nav a:hover::after,
+  .nav a:focus-visible::after {
+    opacity: .85;
+    transform: rotate(10deg) scale(1);
+  }
+
+  /* optional redacted-bar variant: add class="redact" to a link */
+  .nav a.redact { color: transparent; text-shadow: none; position: relative; }
+  .nav a.redact span {
+    background: #111;
+    color: #111;
+    padding: 0 2px;
+    transition: background .15s, color .15s;
+  }
+  .nav a.redact:hover span { background: transparent; color: var(--ink); }
+
+  /* ---------- DEMO CONTENT ---------- */
+  main { padding: 40px 24px; max-width: 720px; }
+  h1 { font-size: 20px; letter-spacing: .15em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <p class="logo">Operation: Your Site Name</p>
+  <ul class="nav">
+    <li><a href="#home" aria-current="page">Home</a></li>
+    <li><a href="#about">The Crew</a></li>
+    <li><a href="#work">The Plan</a></li>
+    <li><a href="#blog">Intel</a></li>
+    <li><a href="#contact">Dead Drop</a></li>
+  </ul>
+</header>
+
+<main>
+  <h1>Case file #0042</h1>
+  <p>Hover over the tabs. Swap in your own link names and URLs.</p>
+</main>
+
+</body>
+</html>
